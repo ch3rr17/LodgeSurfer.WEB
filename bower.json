@@ -1,0 +1,26 @@
+{
+  "name": "lodgesurfer.web",
+  "description": "\"# LodgeSurfer.WEB\"",
+  "main": "gulpfile.js",
+  "authors": [
+    "ch3rr17 <cherr.batac@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/ch3rr17/LodgeSurfer.WEB",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.6.4",
+    "angular-ui-router": "^0.4.2",
+    "ngSweetAlert": "angular-sweetalert#^1.1.2",
+    "angular-local-storage": "^0.5.2",
+    "angularjs-social-login": "^2.5.1",
+    "angular-filepicker": "^1.1.4",
+    "components-font-awesome": "^4.7.0"
+  }
+}
