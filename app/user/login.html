@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <img src="app/images/lsurfer-logo.png" width="100" height="100" style="background-color: #5DADE2;" align="middle">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Login
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label for="">Email</label>
+                        <input type="email" ng-model="vm.login.username" class="form-control" autofocus>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Password</label>
+                        <input type="password" ng-model="vm.login.password" class="form-control">
+                    </div>
+                </div>
+                <div class="panel-footer clearfix">
+                    <a ui-sref="register" class="btn btn-default">Register</a>
+
+                    <button class="btn btn-primary pull-right" ng-click="vm.login()">Login</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

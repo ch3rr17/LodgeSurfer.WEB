@@ -10,8 +10,42 @@
             'angular-filepicker'
         ])
 
-        .config(function($stateProvider, $urlRouterProvider) {
-            $urlRouterProvider.otherwise('search');
+        .config(function(filepickerProvider) {
+            filepickerProvider.setKey('key');
+        })
+
+        .config(function(socialProvider) {
+
+            socialProvider.setFbKey({
+                appId: "183321228844208",
+                apiVersion: "v.28"
+            })
+        })
+
+
+        .config(function($stateProvider, $urlRouterProvider, socialProvider) {
+            $urlRouterProvider.otherwise('home');
+
+
+
+            // filepickerProvider.setKey('A8V75El9QSy0yx4BJmkL7z');
+
+            $stateProvider.state('home', {
+                url: '/home',
+                templateUrl: 'app/home/home.html'
+            })
+
+            $stateProvider.state('login', {
+                url: '/login',
+                templateUrl: 'app/user/login.html',
+                controller: 'UserController as vm'
+            })
+
+            $stateProvider.state('profile', {
+                url: '/profile',
+                templateUrl: 'app/user/profile.html',
+                controller: 'UserController as vm'
+            })
 
             $stateProvider.state('register', {
                 url: '/register',
@@ -19,29 +53,26 @@
                 controller: 'UserController as vm'
             })
 
-            $stateProvider.state('search', {
-                url: '/search',
-                templateUrl: 'app/search/search.html',
-                controller: 'SearchController as vm'
-            })
-
-            $stateProvider.state('search,detail', {
-                url: '/searchDetails',
-                templateUrl: 'app/search/search.grid.html',
-                controller: 'SearchDetailController as vm'
-            })
 
             $stateProvider.state('listing', {
                 url: '/listing',
+                templateUrl: 'app/listing/listing.grid.html',
+                controller: 'ListingController as vm'
+            })
+
+            $stateProvider.state('addListing', {
+                url: '/addListing',
                 templateUrl: 'app/listing/listing.html',
                 controller: 'ListingController as vm'
             })
 
-            $stateProvider.state('listing.detail', {
+            $stateProvider.state('listingDetail', {
                 url: '/listingDetail',
-                templateUrl: 'app/listing/listing.grid.html',
+                templateUrl: 'app/listing/listing.detail.html',
                 controller: 'ListingDetailController as vm'
             })
+
+
 
             $stateProvider.state('favorite', {
                 url: '/favorite',
@@ -51,4 +82,6 @@
 
 
         })
+
+        .value('apiUrl', 'http://localhost:61768/api/')
 })();

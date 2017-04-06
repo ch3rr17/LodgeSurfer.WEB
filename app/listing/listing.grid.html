@@ -1,0 +1,87 @@
+<div class="container search-container" style="margin-top: 60px;">
+    <!-- <button class="btn btn-primary" ui-sref="interests">My interests</button> -->
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Search Listings</h3>
+                </div>
+                <div class="panel-body">
+                    <form class="formContainer">
+                        <fieldset class="form-group">
+                            <label for="city">City</label>
+                            <input type="text" class="form-control input-sm" value="" ng-model="vm.search.city">
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <label for="zip">ZipCode</label>
+                            <input type="text" class="form-control input-sm" value="" ng-model="vm.search.zipCode">
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <label for="bedroom">Bedroom</label>
+                            <!-- <input type="text " class="form-control input-sm" ng-model=" "> -->
+                            <select class="form-control input-sm" value="" ng-model="vm.search.bedroom">
+                         <option>-</option>
+                         <option value=1>1</option>
+                         <option value=2>2</option>
+                         <option value=3>3</option>
+                         <option value=4>4</option>
+                         <option value=5>5</option>
+                         <option value=6>6</option>
+                       </select>
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <label for="bathroom">Bathroom</label>
+                            <select class="form-control input-sm" value="" ng-model="vm.search.bathroom">
+                         <option>-</option>
+                         <option value=1>1</option>
+                         <option value=2>2</option>
+                         <option value=3>3</option>
+                         <option value=4>4</option>
+                         <option value=5>5</option>
+                         <option value=6>6</option>
+                       </select>
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <label for="pricemin">Price Minimum</label>
+                            <input places-auto-complete class="form-control input-sm" value="" ng-model="vm.search.minimumPrice" />
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <label for="pricemax">Price Maximum</label>
+                            <input places-auto-complete class="form-control input-sm" value="" ng-model="vm.search.maximumPrice" />
+                        </fieldset>
+                        <button type="submit" class="btn btn-primary btn-sm pull-right" ng-click="vm.grabListings()">Search</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- SEARCH RESULTS -->
+        <div class="col-md-6">
+            <!-- <button class="btn btn-primary" ng-hide="showSearchForm=!showSearchForm">Search another property?</button> -->
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Listings</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row" ng-repeat="listing in vm.listings">
+                        <div class="col-md-4">
+                            <img src="http://placehold.it/150x150">
+                        </div>
+                        <div class="col-md-6">
+                            <p>Property Name: {{listing.listingName}}</p>
+                            <p>Price: ${{listing.price}}</p>
+                            <p>Number of Bedrooms: {{listing.bedroom}}</p>
+                            <p>Number of Bathrooms: {{listing.bathroom}}</p>
+
+                            <button class="btn btn-primary btn-sm" ng-click="showDetails=!showDetails">More details</button>
+                            <button type="button" class="btn btn-default btn-sm" ng-click="vm.addInterest(searchResults.listingId)">
+                              <span class="glyphicon glyphicon-star " aria-hidden="true "></span> Star
+                          </button>
+                            <!-- <button ng-click = "makeFavorite(searchResults.propId) "></button> -->
+                            <!-- add show/hide functionality to property.detail.html -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>

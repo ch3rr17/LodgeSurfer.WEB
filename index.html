@@ -3,13 +3,15 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Gulp Demo</title>
+    <title>Lodge Surfer</title>
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/sweetalert/dist/sweetalert.css" />
     <link rel="stylesheet" href="bower_components/components-font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <!-- endbower -->
 
     <!-- inject:css -->
+    <link rel="stylesheet" href="/app/styles/styles.css">
     <!-- endinject -->
 </head>
 
@@ -24,15 +26,21 @@
     <script src="bower_components/angularjs-social-login/angularjs-social-login.js"></script>
     <script src="bower_components/filepicker-js/filepicker.min.js"></script>
     <script src="bower_components/angular-filepicker/dist/angular_filepicker.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <!-- endbower -->
-    <h1>HEYA</h1>
+
     <!-- inject:js -->
     <script src="/app/app.js"></script>
+    <script src="/app/favorite/favorite.controller.js"></script>
+    <script src="/app/message/message.controller.js"></script>
+    <script src="/app/listing/listing.controller.js"></script>
+    <script src="/app/search/search.controller.js"></script>
+    <script src="/app/core/favorite.factory.js"></script>
     <script src="/app/core/listing.factory.js"></script>
     <script src="/app/core/localstorage.factory.js"></script>
+    <script src="/app/core/message.factory.js"></script>
     <script src="/app/core/user.factory.js"></script>
-    <script src="/app/search/search.controller.js"></script>
-    <script src="/app/listing/listing.controller.js"></script>
     <script src="/app/user/user.controller.js"></script>
     <!-- endinject -->
 </body>
