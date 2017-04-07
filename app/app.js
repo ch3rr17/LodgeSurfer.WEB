@@ -11,7 +11,7 @@
         ])
 
         .config(function(filepickerProvider) {
-            filepickerProvider.setKey('key');
+            filepickerProvider.setKey('A8V75El9QSy0yx4BJmkL7z');
         })
 
         .config(function(socialProvider) {
@@ -25,10 +25,6 @@
 
         .config(function($stateProvider, $urlRouterProvider, socialProvider) {
             $urlRouterProvider.otherwise('home');
-
-
-
-            // filepickerProvider.setKey('A8V75El9QSy0yx4BJmkL7z');
 
             $stateProvider.state('home', {
                 url: '/home',

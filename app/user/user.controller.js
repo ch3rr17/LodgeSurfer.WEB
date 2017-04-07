@@ -5,14 +5,14 @@
         .module('app')
         .controller('UserController', UserController);
 
-    UserController.$inject = ['UserFactory', 'SweetAlert', 'filepickerService'];
+    UserController.$inject = ['UserFactory', 'SweetAlert', 'filepickerService', 'LocalStorageFactory', 'localStorageService', '$state'];
 
     /* @ngInject */
-    function UserController(UserFactory, SweetAlert, filepickerService) {
+    function UserController(UserFactory, SweetAlert, filepickerService, LocalStorageFactory, localStorageService, $state) {
         var vm = this;
 
-        vm.grabUser = function() {
-            UserFactory.getUser()
+        vm.getUsers = function() {
+            UserFactory.grabUsers()
                 .then(
                     function(response) {
                         vm.users = response.data;
@@ -24,7 +24,36 @@
                 );
         }
 
-        vm.grabUser();
+        vm.getUsers();
+
+
+
+        vm.login = function() {
+            // var user = localStorageService.get('localUserName');
+            // console.log(user);
+            var userLogin = {
+                'EmailAddress': vm.login.emailAddress,
+                'Password': vm.login.password
+            };
+            UserFactory.getUser(userLogin)
+                .then(
+                    function(response) {
+                        console.log(response);
+                        console.log("I'm here!");
+                        var user = response.config.data;
+                        console.log(response.config.data);
+                        if (user[0] == null) {
+                            $state.go('register');
+                        } else {
+                            $state.go('listing');
+                        }
+                    },
+                    function(error) {
+                        console.log(error);
+                    }
+                );
+        }
+
 
         vm.uploadPhoto = function() {
             filepickerService.pick({
