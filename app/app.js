@@ -18,7 +18,7 @@
 
             socialProvider.setFbKey({
                 appId: "183321228844208",
-                apiVersion: "v.28"
+                apiVersion: "v2.8"
             })
         })
 
