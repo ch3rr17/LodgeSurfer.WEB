@@ -11,6 +11,19 @@
     function messageController(MessageFactory, SweetAlert) {
         var vm = this;
 
+        vm.addConvo = function(userIdOne, userIdTwo) {
+            MessageFactory.newMessage(message)
+                .then(
+                    function(response) {
+                        console.log(response.data);
+                        SweetAlert.swal("Your message has been sent");
+                    },
+                    function(error) {
+                        console.log(error);
+                    }
+                );
+        }
+
         vm.addMessage = function(message) {
             MessageFactory.newMessage(message)
                 .then(
