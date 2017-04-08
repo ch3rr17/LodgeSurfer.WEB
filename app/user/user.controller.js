@@ -5,10 +5,10 @@
         .module('app')
         .controller('UserController', UserController);
 
-    UserController.$inject = ['UserFactory', 'SweetAlert', 'filepickerService', 'LocalStorageFactory', 'localStorageService', '$state'];
+    UserController.$inject = ['UserFactory', 'SweetAlert', 'filepickerService', 'LocalStorageFactory', 'localStorageService', '$state', '$rootScope'];
 
     /* @ngInject */
-    function UserController(UserFactory, SweetAlert, filepickerService, LocalStorageFactory, localStorageService, $state) {
+    function UserController(UserFactory, SweetAlert, filepickerService, LocalStorageFactory, localStorageService, $state, $rootScope) {
         var vm = this;
 
         vm.getUsers = function() {
@@ -27,7 +27,7 @@
         vm.getUsers();
 
 
-
+        //Login for regular users
         vm.login = function() {
             var userLogin = {
                 'EmailAddress': vm.login.emailAddress,
@@ -51,6 +51,40 @@
                     }
                 );
         }
+
+        vm.fbLogin = function() {
+            FB.login(function(response) {
+                if (response.authResponse) {
+                    console.log('Welcome!  Fetching your information.... ');
+                    FB.api('/me', function(response) {
+                        console.log('Good to see you, ' + response.name + '.');
+                    });
+                } else {
+                    console.log('User cancelled login or did not fully authorize.');
+                }
+            });
+        }
+
+        //Login for facebook user
+        $rootScope.$on('event:social-sign-in-success', function(event, userDetails) {
+            vm.userDetails = userDetails;
+            console.log('FACEBOOKDEETS', userDetails);
+
+            var login = {
+                'EmailAddress': userDetails.emailAddress,
+                'Password': userDetails.uid
+            };
+            UserFactory.getUser(login)
+                .then(
+                    function(response) {
+                        var user = response.data;
+                        console.log(response.data);
+                    },
+                    function(error) {
+                        console.log(error);
+                    }
+                );
+        })
 
 
         vm.uploadPhoto = function() {
