@@ -76,6 +76,18 @@
                 controller: 'FavoriteController as vm'
             })
 
+            $stateProvider.state('addMessage', {
+                url: '/addMessage',
+                templateUrl: 'app/message/message.form.html',
+                controller: 'MessageController as vm'
+            })
+
+            $stateProvider.state('message', {
+                url: '/message',
+                templateUrl: 'app/message/message.html',
+                controller: 'MessageController as vm'
+            })
+
 
         })
 

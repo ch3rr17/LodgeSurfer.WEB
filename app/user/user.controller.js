@@ -29,8 +29,6 @@
 
 
         vm.login = function() {
-            // var user = localStorageService.get('localUserName');
-            // console.log(user);
             var userLogin = {
                 'EmailAddress': vm.login.emailAddress,
                 'Password': vm.login.password
@@ -38,10 +36,10 @@
             UserFactory.getUser(userLogin)
                 .then(
                     function(response) {
-                        console.log(response);
+                        console.log('USERDATA', response.data);
                         console.log("I'm here!");
-                        var user = response.config.data;
-                        console.log(response.config.data);
+                        var user = response.data;
+                        console.log('USERVAR', response.data);
                         if (user[0] == null) {
                             $state.go('register');
                         } else {
