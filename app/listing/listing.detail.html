@@ -1,24 +1,25 @@
+<!-- <pre>{{vm.detailResponse | json}}</pre> -->
+
 <div class="container">
     <!-- add listing image here -->
-    <img src="http://placehold.it/1280x300" />
+    <img ng-src="{{vm.detailResponse.listingImage}}" width="1280px" height="300px" />
 </div>
 <div class="container" style="margin-top:50px;">
     <div class="row">
         <div class="col-md-6">
-            <p><strong>Listing Name </strong> <i class="fa fa-heart-o" aria-hidden="true"></i></p>
-            <p>Address goes here, city, state, zip code</p>
+            <p><strong>{{vm.detailResponse.listingName}} </strong> <i class="fa fa-heart-o" aria-hidden="true"></i></p>
+            <p>{{vm.detailResponse.address1}}, {{vm.detailResponse.city}}, {{vm.detailResponse.state}}, {{vm.detailResponse.zipCode}}</p>
         </div>
         <div class="col-md-6">
-            <p><img src="http://placehold.it/50x50"></p>
-            <p>Listing owner name and image goes here</p>
+            <p>ADD LISTING OWNER PIC HERE</p>
             <button class="btn btn-primary btn-xs">Contact this owner</button>
         </div>
     </div>
     <div class="row">
         <h1>About this listing </h1>
-        <p>Listing description goes here</p>
-        <p>Price</p>
-        <p>Bedroom</p>
-        <p>Bathroom</p>
+        <p>{{vm.detailResponse.listingDescription}}</p>
+        <p>Price: {{vm.detailResponse.price}}</p>
+        <p>Bedroom: {{vm.detailResponse.bedroom}}</p>
+        <p>Bathroom: {{vm.detailResponse.bathroom}}</p>
     </div>
 </div>

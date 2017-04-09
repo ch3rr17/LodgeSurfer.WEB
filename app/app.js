@@ -63,7 +63,7 @@
             })
 
             $stateProvider.state('listingDetail', {
-                url: '/listingDetail',
+                url: '/listingDetail/:listingId',
                 templateUrl: 'app/listing/listing.detail.html',
                 controller: 'ListingDetailController as vm'
             })

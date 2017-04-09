@@ -18,12 +18,13 @@
                 </div>
                 <div class="panel-footer clearfix">
                     <a ui-sref="register" class="btn btn-default">Register</a>
-
                     <button class="btn btn-primary pull-right" ng-click="vm.login()">Login</button>
                 </div>
             </div>
             <div class="fb-login text-center">
-                <button fb-login type="button" ng-click="vm.fbLogin()">facebook Login</button>
+                <p><strong>-OR-</strong></p>
+                <p>Login with Facebook</p>
+                <button fb-login class="btn btn-primary btn-sm" type="button" ng-click="vm.fbLogin()"><i class="fa fa-facebook" aria-hidden="true"></i> Log in with Facebook</button>
             </div>
         </div>
     </div>

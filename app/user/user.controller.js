@@ -58,6 +58,7 @@
                     console.log('Welcome!  Fetching your information.... ');
                     FB.api('/me', function(response) {
                         console.log('Good to see you, ' + response.name + '.');
+                        $state.go('listing');
                     });
                 } else {
                     console.log('User cancelled login or did not fully authorize.');
@@ -66,25 +67,27 @@
         }
 
         //Login for facebook user
-        $rootScope.$on('event:social-sign-in-success', function(event, userDetails) {
-            vm.userDetails = userDetails;
-            console.log('FACEBOOKDEETS', userDetails);
 
-            var login = {
-                'EmailAddress': userDetails.emailAddress,
-                'Password': userDetails.uid
-            };
-            UserFactory.getUser(login)
-                .then(
-                    function(response) {
-                        var user = response.data;
-                        console.log(response.data);
-                    },
-                    function(error) {
-                        console.log(error);
-                    }
-                );
-        })
+        // $rootScope.$on('event:social-sign-in-success', function(event, userDetails) {
+        //     vm.userDetails = userDetails;
+        //     console.log('FACEBOOKDEETS', userDetails);
+        //
+        //     var login = {
+        //         'EmailAddress': userDetails.emailAddress,
+        //         'Password': userDetails.uid
+        //     };
+        //     UserFactory.getUser(login)
+        //         .then(
+        //             function(response) {
+        //                 var user = response.data;
+        //                 console.log(response.data);
+        //             },
+        //             function(error) {
+        //                 console.log(error);
+        //             }
+        //         );
+        // })
+
 
 
         vm.uploadPhoto = function() {
