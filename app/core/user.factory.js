@@ -11,11 +11,13 @@
     function UserFactory($http, $q, apiUrl) {
         var service = {
             grabUsers: grabUsers,
-            getUser: getUser
+            getUser: getUser,
+            newUser: newUser
         };
 
         return service;
 
+        //get all users
         function grabUsers() {
             var defer = $q.defer();
             $http({
@@ -36,10 +38,16 @@
             return defer.promise;
         }
 
-
+        //match user login
         function getUser(userLogin) {
             return $http
                 .post(apiUrl + 'Users/Login', userLogin);
+        }
+
+        //add a new user
+        function newUser(user) {
+            return $http
+                .post(apiUrl + 'Users', user);
         }
 
     }

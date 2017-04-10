@@ -10,12 +10,35 @@
     /* @ngInject */
     function ListingFactory($http, $q, apiUrl, $stateParams) {
         var service = {
+            getAllListings: getAllListings,
             getListings: getListings,
-            grabListing: grabListing
+            grabListing: grabListing,
+            newFavorite: newFavorite
         };
 
         return service;
 
+        function getAllListings() {
+            var defer = $q.defer();
+            $http({
+                    method: 'GET',
+                    url: apiUrl + 'Listings'
+                })
+                .then(
+                    function(response) {
+                        defer.resolve(response);
+                        console.log(response);
+                    },
+                    function(error) {
+                        defer.reject(error);
+                        console.log(error);
+                    }
+                );
+
+            return defer.promise;
+        }
+
+        //search for listings based on given entry from user by parameter
         function getListings(search) {
             console.log(search);
             var defer = $q.defer();
@@ -47,6 +70,7 @@
             return defer.promise;
         }
 
+        //view more listing details
         function grabListing(listingId) {
             var defer = $q.defer();
             $http({
@@ -63,6 +87,29 @@
                     }
                 );
             return defer.promise;
+        }
+
+        //add listing as a favorite
+        function newFavorite(favorite) {
+            var defer = $q.defer();
+            $http({
+                    method: 'POST',
+                    url: apiUrl + 'Favorites',
+                    data: favorite
+                })
+                .then(
+                    function(response) {
+                        defer.resolve(response);
+                        console.log(response);
+                    },
+                    function(error) {
+                        defer.reject(error);
+                        console.log(error)
+                    }
+                );
+
+            return defer.promise;
+
         }
 
 

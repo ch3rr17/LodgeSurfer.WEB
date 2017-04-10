@@ -26,6 +26,20 @@
 
         vm.getUsers();
 
+        // //success
+        // vm.loginSuccess = function() {
+        //     localStorageService.get('localUserId', vm.userResponse.userId);
+        //     SweetAlert.swal("Welcome Back " + firstName, "", "success");
+        //     //$rootScope.logIn();
+        //     $state.go('listing');
+        //
+        // }
+        //
+        function setStorage(key, value) {
+            LocalStorageFactory.saveKey(key, value)
+            console.log("LOGIN SUCCESSFUL!");
+            return;
+        }
 
         //Login for regular users
         vm.login = function() {
@@ -36,13 +50,24 @@
             UserFactory.getUser(userLogin)
                 .then(
                     function(response) {
+                        console.log('USERLOGIN', userLogin);
                         console.log('USERDATA', response.data);
                         console.log("I'm here!");
-                        var user = response.data;
-                        console.log('USERVAR', response.data);
-                        if (user[0] == null) {
+                        vm.userResponse = response.data;
+                        // console.log('USERVAR', response.data);
+                        console.log('USERVAR', vm.userResponse);
+                        if (vm.userResponse[0] == null) {
                             $state.go('register');
                         } else {
+                            //LocalStorageFactory.setKey('localUserId', vm.userResponse.userId);
+                            //vm.loginSuccess(vm.userResponse[0].userId, vm.userResponse[0].firstName);
+                            //console.log(vm.loginSuccess);
+
+                            setStorage('emailAddress', vm.userResponse[0].emailAddress);
+                            setStorage('userId', vm.userResponse[0].userId);
+                            console.log(vm.userResponse[0].emailAddress);
+                            console.log(vm.userResponse[0].userId);
+                            swal("Welcome Back", vm.userResponse[0].firstName, "success")
                             $state.go('listing');
                         }
                     },
@@ -52,6 +77,7 @@
                 );
         }
 
+        //FACEBOOK LOGIN
         vm.fbLogin = function() {
             FB.login(function(response) {
                 if (response.authResponse) {
@@ -67,7 +93,6 @@
         }
 
         //Login for facebook user
-
         // $rootScope.$on('event:social-sign-in-success', function(event, userDetails) {
         //     vm.userDetails = userDetails;
         //     console.log('FACEBOOKDEETS', userDetails);
@@ -89,7 +114,25 @@
         // })
 
 
+        //Register a new user
+        vm.addUser = function(user) {
+            UserFactory.newUser(user)
+                .then(
+                    function(response) {
+                        $state.go('listing');
+                        console.log('REGISTERED SUCCESSFULLY', response.data);
+                        SweetAlert.swal("Registration sucessfull!", "Search for available listings", "success");
+                    },
+                    function(error) {
+                        console.log(error);
+                        SweetAlert.swal("Failure to register!", "Please try again", "error");
+                    }
+                );
+        }
 
+
+
+        //Upload Photo
         vm.uploadPhoto = function() {
             filepickerService.pick({
                     mimetype: 'image/*',
@@ -101,5 +144,7 @@
                     vm.photoUrl = Blob.url;
                 })
         }
+
+
     }
 })();

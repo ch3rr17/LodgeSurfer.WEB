@@ -92,4 +92,15 @@
         })
 
         .value('apiUrl', 'http://localhost:61768/api/')
+
+        .run(function($rootScope, $location, $state, LocalStorageFactory) {
+            $rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState, fromParams) {
+                var isLoggedIn = LocalStorageFactory.getKey("userId");
+                console.log('changing state from ' + fromState.name + ' to ' + toState.name);
+                if (toState.requireAuth && !isLoggedIn) {
+                    e.preventDefault();
+                    window.location.replace('#!/login');
+                }
+            });
+        });
 })();
