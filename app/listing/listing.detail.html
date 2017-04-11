@@ -1,5 +1,5 @@
 <!-- <pre>{{vm.detailResponse | json}}</pre> -->
-<nav class="navbar navbar-dark bg-primary navbar-static-top" role="navigation">
+<nav class="navbar navbar-dark bg-primary navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -25,13 +25,14 @@
         </div>
     </div>
 </nav>
-<div class="container">
+<div class="container" style="margin-top:80px;">
     <!-- add listing image here -->
     <img class="listing-image" ng-src="{{vm.detailResponse.listingImage}}" />
 </div>
 <div class="container" style="margin-top:50px;">
     <div class="row">
         <div class="col-md-6">
+            <p>{{vm.detailResponse.userId}}</p>
             <p><strong>{{vm.detailResponse.listingName}} </strong>
                 <a ng-click="vm.addFavorite(vm.detailResponse.listingId)" <i class="fa fa-heart-o" aria-hidden="true"></i>
                 </a>
@@ -41,14 +42,14 @@
         <div class="col-md-6">
             <p><strong>Listing Owner</strong></p>
             <p>{{vm.detailResponse.firstName}} {{vm.detailResponse.lastName}}</p>
-            <button class="btn btn-primary btn-xs" ui-sref="addMessage">Contact this owner</button>
+            <button class="btn btn-primary btn-xs" ui-sref="addMessage({listingUserId: vm.detailResponse.userId })">Contact this owner</button>
         </div>
     </div>
     <div class="row">
         <div class="col-md-6">
             <p><strong>About this Listing</strong></p>
             <p>{{vm.detailResponse.listingDescription}}</p>
-            <p>Price: {{vm.detailResponse.price}}</p>
+            <p>Price: ${{vm.detailResponse.price}}</p>
             <p>Bedroom: {{vm.detailResponse.bedroom}}</p>
             <p>Bathroom: {{vm.detailResponse.bathroom}}</p>
         </div>

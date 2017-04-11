@@ -1,4 +1,4 @@
-<nav class="navbar navbar-dark bg-primary navbar-static-top" role="navigation">
+<nav class="navbar navbar-dark bg-primary navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -106,12 +106,7 @@
                             <p>Price: ${{listing.price}}</p>
                             <p>Number of Bedrooms: {{listing.bedroom}}</p>
                             <p>Number of Bathrooms: {{listing.bathroom}}</p>
-
                             <button class="btn btn-primary btn-sm" ui-sref="listingDetail({listingId: listing.listingId})">More details</button>
-                            <!-- <a class="btn btn-primary btn-sm details-btn" ui-sref="details({movie: movie.Title})">More details</a> -->
-                            <button type="button" class="btn btn-default btn-sm" ng-click="vm.addInterest(searchResults.listingId)">
-                              <span class="glyphicon glyphicon-star " aria-hidden="true "></span> Star
-                          </button>
                             <!-- <button ng-click = "makeFavorite(searchResults.propId) "></button> -->
                             <!-- add show/hide functionality to property.detail.html -->
                         </div>
@@ -121,4 +116,4 @@
             </div>
         </div>
     </div>
-    v>
+</div>

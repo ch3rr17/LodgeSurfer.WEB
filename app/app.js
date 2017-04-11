@@ -77,7 +77,7 @@
             })
 
             $stateProvider.state('addMessage', {
-                url: '/addMessage',
+                url: '/addMessage/:listingUserId',
                 templateUrl: 'app/message/message.form.html',
                 controller: 'MessageController as vm'
             })

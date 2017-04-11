@@ -34,9 +34,15 @@
             UserFactory.grabUser(user)
                 .then(
                     function(response) {
-                        vm.user = response.data;
-                        console.log(response.data);
-                        SweetAlert.swal("Welcome back!", vm.user.firstName, "success");
+                        if (user = null) {
+                            SweetAlert.swal("Please login", "success");
+                            $state.go('login');
+                        } else {
+                            vm.user = response.data;
+                            console.log(response.data);
+                            // SweetAlert.swal("Welcome back!", vm.user.firstName, "success");
+                        }
+
                     },
                     function(error) {
                         console.log(error)
@@ -52,7 +58,9 @@
             //console.log(propertyId);
             // var user = localStorageService.get('localUserId');
             // console.log('logged in', user);
-            UserFactory.getFavorite()
+            var user = LocalStorageFactory.getKey('userId');
+            console.log('logged in as: ', user);
+            UserFactory.getFavorite(user)
                 .then(
                     function(response) {
                         vm.favoriteResult = response.data;

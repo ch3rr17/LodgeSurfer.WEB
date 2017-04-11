@@ -1,16 +1,17 @@
 (function() {
     'use strict';
 
-   angular
+    angular
         .module('app')
         .controller('MessageController', MessageController);
 
-   MessageController.$inject = ['MessageFactory', 'SweetAlert', 'LocalStorageFactory', 'UserFactory', '$state'];
+    MessageController.$inject = ['MessageFactory', 'SweetAlert', 'LocalStorageFactory', 'UserFactory', '$state', '$stateParams'];
 
-   /* @ngInject */
-    function MessageController(MessageFactory, SweetAlert, LocalStorageFactory, UserFactory, $state) {
+    /* @ngInject */
+    function MessageController(MessageFactory, SweetAlert, LocalStorageFactory, UserFactory, $state, $stateParams) {
         var vm = this;
         vm.message = {};
+
 
         vm.getMessage = function() {
             //  var user = localStorageService.get('localUserId');
@@ -22,7 +23,7 @@
             //
             var user = LocalStorageFactory.getKey('userId');
             console.log('logged in as: ', user);
-            MessageFactory.getMessages(vm.search)
+            MessageFactory.getMessages(user)
                 .then(
                     function(response) {
                         vm.messages = response.data;
@@ -35,41 +36,41 @@
                 );
         }
 
-       vm.addConvo = function(id) {
-        var convo = {
-            userOneId: LocalStorageFactory.getKey('userId'),
-            userTwoId: 2
-          };
-          console.log(convo);
+        vm.addConvo = function() {
+            var convo = {
+                userOneId: LocalStorageFactory.getKey('userId'),
+                userTwoId: $stateParams.listingUserId
+            };
+            console.log(convo);
             MessageFactory.newConvo(convo)
                 .then(
                     function(response) {
-                      console.log(convo);
+                        console.log(convo);
                         console.log(response.data);
                         var convoId;
                         convoId = response.data.conversationId;
 
-                       var message = {
-                          ConversationId: convoId,
-                          UserId: response.data.userOneId,
-                          Subject: vm.message.subject,
-                          MessageText: vm.message.messageText,
-                          MessageTime: new Date()
+                        var message = {
+                            ConversationId: convoId,
+                            UserId: response.data.userOneId,
+                            Subject: vm.message.subject,
+                            MessageText: vm.message.messageText,
+                            MessageTime: new Date()
                         };
 
-                       console.log(message);
+                        console.log(message);
                         vm.addMessage(message);
 
-                   },
-                    function (error) {
+                    },
+                    function(error) {
                         console.log(error);
                         console.log(vm.message);
                     }
                 );
 
-       }
+        }
 
-       vm.addMessage = function(message) {
+        vm.addMessage = function(message) {
             console.log(message);
             MessageFactory.newMessage(message)
                 .then(
@@ -84,5 +85,5 @@
                 );
         }
 
-   }
+    }
 })();
