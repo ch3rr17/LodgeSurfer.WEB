@@ -1,22 +1,22 @@
 (function() {
     'use strict';
 
-   angular
+  angular
         .module('app')
         .factory('MessageFactory', MessageFactory);
 
-   MessageFactory.$inject = ['$http', '$q', 'apiUrl'];
+  MessageFactory.$inject = ['$http', '$q', 'apiUrl'];
 
-   /* @ngInject */
+  /* @ngInject */
     function MessageFactory($http, $q, apiUrl) {
         var service = {
           newConvo: newConvo,
           newMessage: newMessage
         };
 
-       return service;
+      return service;
 
-       function newConvo(convo) {
+      function newConvo(convo) {
           var defer = $q.defer();
           $http({
             method: 'POST',
@@ -34,18 +34,13 @@
           );
           return defer.promise;
 
-       }
+      }
 
-       function newMessage(userId, conversationId, message) {
+      function newMessage(message) {
           var defer = $q.defer();
           $http({
             method: 'POST',
-            url: apiUrl + 'messages/',
-            params: {
-              userId: message.userId,
-              conversationId: message.conversationId
-
-            },
+            url: apiUrl + 'messages',
             data: message
           })
           .then(
@@ -59,6 +54,6 @@
           );
           return defer.promise;
 
-       }
+      }
     }
 })();
