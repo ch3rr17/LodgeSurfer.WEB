@@ -11,11 +11,51 @@
     function UserController(UserFactory, SweetAlert, filepickerService, LocalStorageFactory, localStorageService, $state, $rootScope) {
         var vm = this;
 
-        vm.getUsers = function() {
-            UserFactory.grabUsers()
+        // vm.getUsers = function() {
+        //     UserFactory.grabUsers()
+        //         .then(
+        //             function(response) {
+        //                 vm.users = response.data;
+        //                 console.log(response.data);
+        //             },
+        //             function(error) {
+        //                 console.log(error);
+        //             }
+        //         );
+        // }
+        //
+        // vm.getUsers();
+        //
+
+        //get user profile
+        vm.getUser = function() {
+            var user = LocalStorageFactory.getKey('userId');
+            console.log('logged in as: ', user);
+            UserFactory.grabUser(user)
                 .then(
                     function(response) {
-                        vm.users = response.data;
+                        vm.user = response.data;
+                        console.log(response.data);
+                        SweetAlert.swal("Welcome back!", vm.user.firstName, "success");
+                    },
+                    function(error) {
+                        console.log(error)
+                    }
+                );
+        }
+
+        vm.getUser();
+
+
+        //get favorited listing
+        vm.getFavorite = function() {
+            //console.log(propertyId);
+            // var user = localStorageService.get('localUserId');
+            // console.log('logged in', user);
+            UserFactory.getFavorite()
+                .then(
+                    function(response) {
+                        vm.favoriteResult = response.data;
                         console.log(response.data);
                     },
                     function(error) {
@@ -23,8 +63,8 @@
                     }
                 );
         }
+        vm.getFavorite();
 
-        vm.getUsers();
 
         // //success
         // vm.loginSuccess = function() {
@@ -143,6 +183,13 @@
                     console.log(Blob);
                     vm.photoUrl = Blob.url;
                 })
+        }
+
+        //logout user
+        vm.logOut = function() {
+            $state.go('home');
+            LocalStorageFactory.clear();
+            SweetAlert.swal("Logged out successfully!", "Please log in again if you want to add a listing", "success");
         }
 
 

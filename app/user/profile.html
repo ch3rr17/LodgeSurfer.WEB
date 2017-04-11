@@ -1,5 +1,107 @@
+<nav class="navbar navbar-dark bg-primary navbar-static-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><img src="app/images/lsurfer-logo.png" width="100px" height="50px" /></li>
+                <li style="background-color: #fff;"><a ui-sref="main">Home</a></li>
+                <li style="background-color: #fff;"><a ui-sref="listing">Search Listings</a></li>
+                <li style="background-color: #fff;"><a ui-sref="message">Messages</a></li>
+            </ul>
+            <form class="navbar-form navbar-left pull-right">
+                <button class="btn btn-default" type="submit" ui-sref="login">Login</button>
+                <button class="btn btn-default" type="submit" ng-click="vm.logOut()">Logout</button>
+                <button class="btn btn-default" type="submit" ui-sref="register">Register</button>
+            </form>
+        </div>
+    </div>
+</nav>
 <div class="container">
-    <pre>{{vm.users | json}}</pre>
+    <!-- <pre>{{vm.users | json}}</pre> -->
     <!-- <input filepicker type="filepicker-dragdrop" data-fp-services="computer,facebook,dropbox,box" on-success="onSuccess(event.fpfile)" ng-click="vm.uploadPhoto()" /> -->
-    <input type="button" value="Upload" ng-click="vm.uploadPhoto()" />
+    <!-- <pre>{{vm.user | json}}</pre> -->
+    <div class="row">
+        <div class="col-md-3">
+            <div class="profile-sidebar">
+                <!-- SIDEBAR USERPIC -->
+                <div class="profile-userpic">
+                    <img src="http://keenthemes.com/preview/metronic/theme/assets/admin/pages/media/profile/profile_user.jpg" class="img-responsive" alt="">
+                </div>
+                <!-- END SIDEBAR USERPIC -->
+                <!-- SIDEBAR USER TITLE -->
+                <div class="profile-usertitle">
+                    <div class="profile-usertitle-name">
+                        {{vm.user.firstName}}
+                    </div>
+                    <div class="profile-usertitle-name">
+                        {{vm.user.contactPhone}}
+                    </div>
+                    <div class="profile-usertitle-name">
+                        {{vm.user.zipCode}}
+                    </div>
+                    <div class="profile-usertitle-name">
+                        {{vm.user.contactPhone}}
+                    </div>
+                    <div class="profile-usertitle-name">
+                        {{vm.user.birthDate | date: 'M/d/yy'}}
+                    </div>
+                    <div class="profile-usertitle-name">
+                        {{vm.user.emailAddress}}
+                    </div>
+                    <div class="profile-usertitle-name">
+                        {{vm.user.username}}
+                    </div>
+                    <div class="profile-usertitle-job">
+                        Developer
+                    </div>
+                </div>
+                <!-- END SIDEBAR USER TITLE -->
+                <!-- SIDEBAR BUTTONS -->
+                <div class="profile-userbuttons">
+                    <button type="button" class="btn btn-success btn-sm">Follow</button>
+                    <button type="button" class="btn btn-danger btn-sm">Message</button>
+                </div>
+                <!-- END SIDEBAR BUTTONS -->
+                <!-- SIDEBAR MENU -->
+                <div class="profile-usermenu">
+                    <ul class="nav">
+                        <li class="active">
+                            <a ui-sref="listing">
+                                <i class="glyphicon glyphicon-home"></i> Listing </a>
+                        </li>
+                        <!-- <li>
+                          <a href="#">
+                              <i class="glyphicon glyphicon-user"></i> Account Settings </a>
+                      </li>
+                      <li>
+                          <a href="#" target="_blank">
+                              <i class="glyphicon glyphicon-ok"></i> Tasks </a>
+                      </li>
+                      <li>
+                          <a href="#">
+                              <i class="glyphicon glyphicon-flag"></i> Help </a>
+                      </li> -->
+                    </ul>
+                </div>
+                <!-- END MENU -->
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <pre>{{vm.favoriteResult | json}}</pre>
+        </div>
+    </div>
+
+
+
+
+    <!-- <input type="button" value="Upload" ng-click="vm.uploadPhoto()" /> -->
 </div>

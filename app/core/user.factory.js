@@ -10,19 +10,20 @@
     /* @ngInject */
     function UserFactory($http, $q, apiUrl) {
         var service = {
-            grabUsers: grabUsers,
+            grabUser: grabUser,
             getUser: getUser,
-            newUser: newUser
+            newUser: newUser,
+            getFavorite: getFavorite
         };
 
         return service;
 
         //get all users
-        function grabUsers() {
+        function grabUser(userId) {
             var defer = $q.defer();
             $http({
                     method: 'GET',
-                    url: apiUrl + 'Users'
+                    url: apiUrl + 'Users/' + userId
                 })
                 .then(
                     function(response) {
@@ -49,6 +50,27 @@
             return $http
                 .post(apiUrl + 'Users', user);
         }
+
+        //get Favorites
+        function getFavorite(userId) {
+            console.log();
+            var defer = $q.defer();
+            $http({
+                    method: 'GET',
+                    url: apiUrl + 'Listings' + '/SearchFavorites/' + userId
+                })
+                .then(
+                    function(response) {
+                        defer.resolve(response);
+                    },
+                    function(error) {
+                        defer.reject(error);
+                    }
+                );
+
+            return defer.promise;
+        }
+
 
     }
 })();
