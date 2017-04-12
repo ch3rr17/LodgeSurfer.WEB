@@ -11,13 +11,17 @@
     function ListingFactory($http, $q, apiUrl, $stateParams) {
         var service = {
             getAllListings: getAllListings,
+            grabHostListing: grabHostListing,
             getListings: getListings,
             grabListing: grabListing,
+            addListing: addListing,
             newFavorite: newFavorite
         };
 
+
         return service;
 
+        //get all listings
         function getAllListings() {
             var defer = $q.defer();
             $http({
@@ -36,6 +40,27 @@
                 );
 
             return defer.promise;
+        }
+
+        function grabHostListing(userId) {
+            var defer = $q.defer();
+            $http({
+                    method: 'GET',
+                    url: apiUrl + 'listings' + '/GetSearchListingsByUser?userId=' + userId
+                })
+                .then(
+                    function(response) {
+                        defer.resolve(response);
+                        console.log(response);
+                    },
+                    function(error) {
+                        defer.reject(error);
+                        console.log(error);
+                    }
+                );
+
+            return defer.promise;
+
         }
 
         //search for listings based on given entry from user by parameter
@@ -89,6 +114,25 @@
             return defer.promise;
         }
 
+        function addListing(newList) {
+            var defer = $q.defer();
+            $http({
+                    method: 'POST',
+                    url: apiUrl + 'Listings',
+                    data: newList
+                })
+                .then(
+                    function(response) {
+                        defer.resolve(response);
+                    },
+                    function(error) {
+                        defer.reject(error);
+                    }
+                );
+
+            return defer.promise;
+
+        }
         //add listing as a favorite
         function newFavorite(favorite) {
             var defer = $q.defer();

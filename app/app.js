@@ -7,7 +7,8 @@
             'oitozero.ngSweetAlert',
             'LocalStorageModule',
             'socialLogin',
-            'angular-filepicker'
+            'angular-filepicker',
+            'xeditable'
         ])
 
         .config(function(filepickerProvider) {
@@ -93,7 +94,8 @@
 
         .value('apiUrl', 'http://localhost:61768/api/')
 
-        .run(function($rootScope, $location, $state, LocalStorageFactory) {
+        .run(function($rootScope, $location, $state, LocalStorageFactory, editableOptions) {
+            editableOptions.theme = 'bs3';
             $rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState, fromParams) {
                 var isLoggedIn = LocalStorageFactory.getKey("userId");
                 console.log('changing state from ' + fromState.name + ' to ' + toState.name);

@@ -1,3 +1,5 @@
+/*MAIN PAGES*/
+
 .panel-footer {
     height: 50px;
     /*background-color: #111106;*/
@@ -5,6 +7,9 @@
     color: #fff;
     border-top: 1px solid #903030;
 }
+
+
+/*LISTING DETAIL PAGE*/
 
 .listing-image {
     background-repeat: no-repeat;
@@ -17,6 +22,9 @@
     width: 100%;
 }
 
+
+/*SEARCH LISTING PAGE*/
+
 .availListing {
     border: 1px solid blue;
     width: 140px;
@@ -24,7 +32,23 @@
 }
 
 
+/*ADD LISTING PAGE*/
+
+.listingContainer {
+    border: 1px solid;
+}
+
+.btn-color {
+    background-color: #FF8300;
+    color: #fff;
+}
+
+
 /*PROFILE PAGE*/
+
+.userInfo {
+    font-size: 10pt;
+}
 
 .profile {
     margin: 20px 0;
@@ -38,6 +62,7 @@
     background: #fff;
     border: 1px solid #5DADE2;
     border-radius: 4px;
+    width: 290px;
 }
 
 .profile-userpic img {
@@ -138,4 +163,7 @@
 .favorite {
     margin-top: 30px;
     margin-left: 80px;
+}
+
+
 }

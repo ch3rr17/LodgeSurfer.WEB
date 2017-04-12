@@ -11,21 +11,6 @@
     function UserController(UserFactory, SweetAlert, filepickerService, LocalStorageFactory, localStorageService, $state, $rootScope) {
         var vm = this;
 
-        // vm.getUsers = function() {
-        //     UserFactory.grabUsers()
-        //         .then(
-        //             function(response) {
-        //                 vm.users = response.data;
-        //                 console.log(response.data);
-        //             },
-        //             function(error) {
-        //                 console.log(error);
-        //             }
-        //         );
-        // }
-        //
-        // vm.getUsers();
-        //
 
         //get user profile
         vm.getUser = function() {
@@ -34,20 +19,15 @@
             UserFactory.grabUser(user)
                 .then(
                     function(response) {
-                        if (user = null) {
-                            SweetAlert.swal("Please login", "success");
-                            $state.go('login');
-                        } else {
-                            vm.user = response.data;
-                            console.log(response.data);
-                            // SweetAlert.swal("Welcome back!", vm.user.firstName, "success");
-                        }
-
-                    },
-                    function(error) {
-                        console.log(error)
+                        vm.user = response.data;
+                        console.log(response.data);
+                        // SweetAlert.swal("Welcome back!", vm.user.firstName, "success");
                     }
-                );
+                )
+                .catch(function(error) {
+                    SweetAlert.swal("Please login", "Enter your Email Address and Password to login", "info");
+                    $state.go('login');
+                });
         }
 
         vm.getUser();
@@ -55,9 +35,6 @@
 
         //get favorited listing
         vm.getFavorite = function() {
-            //console.log(propertyId);
-            // var user = localStorageService.get('localUserId');
-            // console.log('logged in', user);
             var user = LocalStorageFactory.getKey('userId');
             console.log('logged in as: ', user);
             UserFactory.getFavorite(user)
@@ -169,7 +146,7 @@
                     function(response) {
                         $state.go('listing');
                         console.log('REGISTERED SUCCESSFULLY', response.data);
-                        SweetAlert.swal("Registration sucessfull!", "Search for available listings", "success");
+                        SweetAlert.swal("Registration successful!", "Search for available listings", "success");
                     },
                     function(error) {
                         console.log(error);

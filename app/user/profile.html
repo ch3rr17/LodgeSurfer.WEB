@@ -29,7 +29,7 @@
     <!-- <input filepicker type="filepicker-dragdrop" data-fp-services="computer,facebook,dropbox,box" on-success="onSuccess(event.fpfile)" ng-click="vm.uploadPhoto()" /> -->
     <!-- <pre>{{vm.user | json}}</pre> -->
     <div class="row profile">
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="profile-sidebar">
                 <!-- SIDEBAR USERPIC -->
                 <div class="profile-userpic">
@@ -39,25 +39,23 @@
                 <!-- SIDEBAR USER TITLE -->
                 <div class="profile-usertitle">
                     <div class="profile-usertitle-name">
-                        {{vm.user.firstName}} {{vm.user.lastName}}
+                        <p class="userInfo">{{vm.user.firstName}} {{vm.user.lastName}}</p>
+                    </div>
+
+                    <div>
+                        <p class="userInfo">ZipCode: {{vm.user.zipCode}}</p>
                     </div>
                     <div>
-                        {{vm.user.contactPhone}}
+                        <p class="userInfo">ContactPhone: {{vm.user.contactPhone}}</p>
                     </div>
                     <div>
-                        {{vm.user.zipCode}}
+                        <p class="userInfo">BirthDate: {{vm.user.birthDate | date: 'M/d/yy'}}</p>
                     </div>
                     <div>
-                        {{vm.user.contactPhone}}
+                        <p class="userInfo">EmailAddress: {{vm.user.emailAddress}}</p>
                     </div>
                     <div>
-                        {{vm.user.birthDate | date: 'M/d/yy'}}
-                    </div>
-                    <div>
-                        {{vm.user.emailAddress}}
-                    </div>
-                    <div>
-                        {{vm.user.username}}
+                        <p class="userInfo">Username: {{vm.user.username}}</p>
                     </div>
                     <!-- <div class="profile-usertitle-job">
                         Developer
@@ -65,15 +63,15 @@
                 </div>
                 <!-- END SIDEBAR USER TITLE -->
                 <!-- SIDEBAR BUTTONS -->
-                <div class="profile-userbuttons">
+                <!-- <div class="profile-userbuttons">
                     <button type="button" class="btn btn-success btn-sm">Follow</button>
-                    <button type="button" class="btn btn-danger btn-sm">Message</button>
-                </div>
+                    <button type="button" class="btn btn-danger btn-sm" >Message</button>
+                </div> -->
                 <!-- END SIDEBAR BUTTONS -->
                 <!-- SIDEBAR MENU -->
                 <div class="profile-usermenu">
                     <ul class="nav">
-                        <li class="active">
+                        <li>
                             <a ui-sref="addListing">
                                 <i class="glyphicon glyphicon-home"></i> My listings </a>
                         </li>
@@ -96,7 +94,7 @@
         </div>
         <!--FAVORITES TABLE -->
         <div class="col-md-6 favorite" ng-repeat="favoriteResult in vm.favoriteResult">
-            <!-- <pre>{{vm.favoriteResult | json}}</pre> -->
+            <h3>Favorite Listings</h3>
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -128,9 +126,4 @@
             </table>
         </div>
     </div>
-
-
-
-
-    <!-- <input type="button" value="Upload" ng-click="vm.uploadPhoto()" /> -->
 </div>

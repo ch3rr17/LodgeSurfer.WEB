@@ -47,11 +47,9 @@
                     function(response) {
                         console.log(convo);
                         console.log(response.data);
-                        var convoId;
-                        convoId = response.data.conversationId;
 
                         var message = {
-                            ConversationId: convoId,
+                            ConversationId: response.data.conversationId,
                             UserId: response.data.userOneId,
                             Subject: vm.message.subject,
                             MessageText: vm.message.messageText,
