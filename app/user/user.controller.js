@@ -32,6 +32,22 @@
 
         vm.getUser();
 
+        //update user profile
+        vm.updateProfile = function(user) {
+            var user = LocalStorageFactory.getKey('userId');
+            console.log('logged in as: ', user);
+            UserFactory.updateUser(user)
+                .then(
+                    function() {
+                        console.log('UPDATED PROPERTIES', response.data);
+                    },
+                    function(error) {
+                        console.log(error);
+                        SweetAlert.swal("Failure to update profile", "", "error");
+                    }
+                );
+        }
+
 
         //get favorited listing
         vm.getFavorite = function() {

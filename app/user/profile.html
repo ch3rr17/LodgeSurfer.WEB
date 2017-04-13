@@ -39,27 +39,31 @@
                 <!-- SIDEBAR USER TITLE -->
                 <div class="profile-usertitle">
                     <div class="profile-usertitle-name">
-                        <p class="userInfo">{{vm.user.firstName}} {{vm.user.lastName}}</p>
+                        <!-- <p class="userInfo">{{vm.user.firstName}} {{vm.user.lastName}}</p> -->
+                        <a href="#" editable-text="vm.user.firstName">{{vm.user.firstName || '[empty]' }}</a>
+                        <a href="#" editable-text="vm.user.lastName">{{vm.user.lastName || '[empty]' }}</a>
                     </div>
 
                     <div>
-                        <p class="userInfo">ZipCode: {{vm.user.zipCode}}</p>
+                        <a href="#" editable-text="vm.user.zipCode">{{vm.user.zipCode || '[empty]' }}</a>
                     </div>
                     <div>
-                        <p class="userInfo">ContactPhone: {{vm.user.contactPhone}}</p>
+                        <a href="#" editable-text="vm.user.contactPhone">{{vm.user.contactPhone || '[empty]' }}</a>
                     </div>
                     <div>
-                        <p class="userInfo">BirthDate: {{vm.user.birthDate | date: 'M/d/yy'}}</p>
+                        <a href="#" editable-date="vm.user.birthDate">{{vm.user.birthDate | date:'M/dd/yy' || '[empty]' }}</a>
                     </div>
                     <div>
-                        <p class="userInfo">EmailAddress: {{vm.user.emailAddress}}</p>
+                        <a href="#" editable-text="vm.user.emailAddress">{{vm.user.emailAddress || '[empty]' }}</a>
                     </div>
                     <div>
-                        <p class="userInfo">Username: {{vm.user.username}}</p>
+
+                        <a href="#" editable-text="vm.user.username">{{vm.user.username || '[empty]' }}</a>
                     </div>
                     <!-- <div class="profile-usertitle-job">
                         Developer
                     </div> -->
+                    <button class="btn btn-primary" ng-click="vm.updateProfile(user)">Update Profile</button>
                 </div>
                 <!-- END SIDEBAR USER TITLE -->
                 <!-- SIDEBAR BUTTONS -->

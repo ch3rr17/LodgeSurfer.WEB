@@ -13,6 +13,7 @@
             grabUser: grabUser,
             getUser: getUser,
             newUser: newUser,
+            updateUser: updateUser,
             getFavorite: getFavorite
         };
 
@@ -49,6 +50,13 @@
         function newUser(user) {
             return $http
                 .post(apiUrl + 'Users', user);
+        }
+
+        //update user
+        function updateUser(user) {
+            console.log("BEFORE UPDATE USER", user);
+            return $http
+                .put(apiUrl + 'Users/' + user.userId, user);
         }
 
         //get Favorites

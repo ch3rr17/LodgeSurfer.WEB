@@ -40,12 +40,15 @@
                     function(response) {
                         vm.hostListing = response.data;
                         console.log(response.data);
+                    },
+                    function(error) {
+                        console.log(error);
                     }
-                )
-                .catch(function(error) {
-                    SweetAlert.swal("Please login", "Enter your Email Address and Password to login", "info");
-                    $state.go('login');
-                });
+                );
+            // .catch(function(error) {
+            //     SweetAlert.swal("Please login", "Enter your Email Address and Password to login", "info");
+            //     $state.go('login');
+            // });
         }
 
         vm.getHostListing();
