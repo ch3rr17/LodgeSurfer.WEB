@@ -11,6 +11,8 @@
     function ListingController(ListingFactory, UserFactory, LocalStorageFactory, localStorageService, SweetAlert, $state, filepickerService) {
         var vm = this;
 
+        vm.hideAddForm = false;
+        //check if vm.listing is available
         if (!vm.listing) {
             vm.listing = {};
         }
@@ -38,7 +40,7 @@
             ListingFactory.grabHostListing(user)
                 .then(
                     function(response) {
-                        vm.hostListing = response.data;
+                        vm.hostListings = response.data;
                         console.log(response.data);
                     },
                     function(error) {
@@ -99,15 +101,23 @@
                 })
         }
 
+        //update a listing
+        vm.updateListing = function(hostListing) {
+            var user = LocalStorageFactory.getKey('userId');
+            console.log('logged in as: ', user);
+            ListingFactory.updateHostListing(hostListing)
+                .then(
+                    function(response) {
+                        console.log('UPDATED LISTING');
+                    },
+                    function(error) {
+                        console.log('FAILURE TO UPDATE LISTING', error);
+                    }
+                );
+        }
+
         //search for listings
         vm.searchHandler = function() {
-            //  var user = localStorageService.get('localUserId');
-            //console.log('USER in listing', vm.userResponse.userId);
-            //console.log('LOGGED IN AS:', user);
-            //console.log('LOCALSTORAGESERVICE', localStorageService);
-            //console.log('LOCALSTORAGEFACTORY', LocalStorageFactory);
-            //init();
-            //
             var user = LocalStorageFactory.getKey('userId');
             console.log('logged in as: ', user);
             ListingFactory.getListings(vm.search)

@@ -12,7 +12,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li><img src="app/images/lsurfer-logo.png" width="100px" height="50px" /></li>
-                <li style="background-color: #fff;"><a ui-sref="main">Home</a></li>
+                <li style="background-color: #fff;"><a ui-sref="home">Home</a></li>
                 <li style="background-color: #fff;"><a ui-sref="listing">Listings</a></li>
 
             </ul>
@@ -26,9 +26,10 @@
 </nav>
 <div class="container" style="margin-top: 80px;">
     <div class="row">
-        <div class="col-md-4 listingContainer">
-            <h3>ADD A NEW LISTING</h3>
-            <form class="formContainer">
+        <div class="col-md-4 listing-container-left-col">
+            <button class="btn btn-primary" ng-click="hideAddForm=!hideAddForm">HIDE ADD LISTING</button>
+            <h3 class="listing-title">Add a new listing</h3>
+            <form class="formContainer" ng-hide="hideAddForm">
                 <fieldset class="form-group">
                     <label for="listingname">Listing Name</label>
                     <input type="text" class="form-control input-sm" ng-model="vm.listing.listingName">
@@ -103,37 +104,37 @@
 
             </form>
         </div>
-        <div class="col-md-4">
-            <div class="col-md-8 text-left" ng-repeat="availableListings in vm.availableListings">
+        <div class="col-md-4 listing-container-right-col">
+            <h3 class="listing-title">My Listings</h3>
+            <div class="col-md-8 text-left" ng-repeat="hostListing in vm.hostListings">
                 <h4>Listing Name:</h4>
-                <a href="#" editable-text="availableListings.listingName">{{ availableListings.listingName || '[empty]' }}</a>
+                <a href="#" editable-text="hostListing.listingName">{{ hostListing.listingName || '[empty]' }}</a>
                 <h4>Listing Image:</h4>
-                <a href="#" editable-text="availableListings.listingImage">{{ availableListings.listingImage || '[empty]' }}</a>
-                <img ng-src="{{availableListings.listingImage}}" width="40px" height="40px" />
+                <button class="btn btn-color btn-xs" ng-click="vm.uploadPhoto()"><i class="fa fa-camera-retro" style="color: #fff;" aria-hidden="true"></i> Update Image</button>
+                <a href="#" editable-text="hostListing.listingImage">{{ hostListing.listingImage || '[empty]' }}</a>
+                <!-- <img ng-src="{{hostListing.listingImage}}" width="40px" height="40px" /> -->
                 <h4>Listing Description:</h4>
-                <a href="#" editable-text="availableListings.listingDescription">{{ availableListings.listingName || '[empty]' }}</a>
+                <a href="#" editable-text="hostListing.listingDescription">{{ hostListing.listingName || '[empty]' }}</a>
                 <h4>Listing Price:</h4>
-                <a href="#" editable-text="availableListings.price">{{ availableListings.price || '[empty]' }}</a>
+                <a href="#" editable-text="hostListing.price">{{ hostListing.price || '[empty]' }}</a>
                 <h4>Contact Phone:</h4>
-                <a href="#" editable-text="availableListings.contactPhone">{{ availableListings.contactPhone || '[empty]' }}</a>
+                <a href="#" editable-text="hostListing.contactPhone">{{ hostListing.contactPhone || '[empty]' }}</a>
                 <h4>Address 1:</h4>
-                <a href="#" editable-text="availableListings.address1">{{ availableListings.address1 || '[empty]' }}</a>
+                <a href="#" editable-text="hostListing.address1">{{ hostListing.address1 || '[empty]' }}</a>
                 <h4>Address 2:</h4>
-                <a href="#" editable-text="availableListings.address2">{{ availableListings.address2 || '[empty]' }}</a>
+                <a href="#" editable-text="hostListing.address2">{{ hostListing.address2 || '[empty]' }}</a>
                 <h4>City:</h4>
-                <a href="#" editable-text="availableListings.city">{{ availableListings.city || '[empty]' }}</a>
+                <a href="#" editable-text="hostListing.city">{{ hostListing.city || '[empty]' }}</a>
                 <h4>State:</h4>
-                <a href="#" editable-text="availableListings.state">{{ availableListings.state || '[empty]' }}</a>
+                <a href="#" editable-text="hostListing.state">{{ hostListing.state || '[empty]' }}</a>
                 <h4>ZipCode:</h4>
-                <a href="#" editable-text="availableListings.zipCode">{{ availableListings.zipCode || '[empty]' }}</a>
+                <a href="#" editable-text="hostListing.zipCode">{{ hostListing.zipCode || '[empty]' }}</a>
                 <h4>Bedroom:</h4>
-                <a href="#" editable-text="availableListings.bedroom">{{ availableListings.bedroom || '[empty]' }}</a>
+                <a href="#" editable-text="hostListing.bedroom">{{ hostListing.bedroom || '[empty]' }}</a>
                 <h4>Bathroom:</h4>
-                <a href="#" editable-text="availableListings.bedroom">{{ availableListings.bathroom || '[empty]' }}</a>
-
-
+                <a href="#" editable-text="hostListing.bedroom">{{ hostListing.bathroom || '[empty]' }}</a>
                 <div>
-                    <button ng-click="vm.updateListing()" type="button" class="btn btn-primary">Submit changes</button>
+                    <button ng-click="vm.updateListing(hostListing)" type="button" class="btn btn-primary">Submit changes</button>
                 </div>
             </div>
         </div>

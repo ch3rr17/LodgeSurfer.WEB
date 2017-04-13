@@ -1,3 +1,15 @@
+body {
+    background-image: url("../images/BACKGROUND-IMAGE.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.home-title {
+    font-family: 'californiamedium', Arial !important;
+}
+
+
 /*MAIN PAGES*/
 
 .panel-footer {
@@ -34,8 +46,31 @@
 
 /*ADD LISTING PAGE*/
 
-.listingContainer {
-    border: 1px solid;
+.listing-container-left-col {
+    border: 1px solid #fff;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.listing-container-right-col {
+    border: 1px solid #fff;
+    background-color: #fff;
+    padding: 10px;
+    margin-left: 60px;
+    border-radius: 4px;
+    width: 500px;
+}
+
+@font-face {
+    font-family: 'californiamedium';
+    src: url('../font/california-webfont.woff2') format('woff2'), url('../font/california-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+h3.listing-title {
+    font-family: 'californiamedium', Arial !important;
 }
 
 .btn-color {

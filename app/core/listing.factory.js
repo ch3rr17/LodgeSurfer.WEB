@@ -15,6 +15,7 @@
             getListings: getListings,
             grabListing: grabListing,
             addListing: addListing,
+            updateHostListing: updateHostListing,
             newFavorite: newFavorite
         };
 
@@ -132,6 +133,11 @@
 
             return defer.promise;
 
+        }
+
+        function updateHostListing(hostListing) {
+            return $http
+                .put(apiUrl + 'Listings/' + hostListing.listingId, hostListing);
         }
         //add listing as a favorite
         function newFavorite(favorite) {
