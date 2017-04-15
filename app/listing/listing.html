@@ -12,14 +12,14 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li><img src="app/images/lsurfer-logo.png" width="100px" height="50px" /></li>
-                <li style="background-color: #fff;"><a ui-sref="home">Home</a></li>
-                <li style="background-color: #fff;"><a ui-sref="listing">Listings</a></li>
-
+                <li style="background-color: #fff;"><a ui-sref="home"><i class="fa fa-home" aria-hidden="true"></i>Home</a></li>
+                <li style="background-color: #fff;"><a ui-sref="listing"><i class="fa fa-bed" aria-hidden="true"></i>Search Listings</a></li>
+                <li style="background-color: #fff;"><a ui-sref="messageConvo"><i class="fa fa-envelope" aria-hidden="true"></i>Messages</a></li>
             </ul>
             <form class="navbar-form navbar-left pull-right">
-                <button class="btn btn-default" type="submit" ui-sref="login">Login</button>
-                <button class="btn btn-default" type="submit" ng-click="vm.logOut()">Logout</button>
-                <button class="btn btn-default" type="submit" ui-sref="register">Register</button>
+                <button class="btn btn-default" type="submit" ui-sref="login"><i class="fa fa-sign-in" aria-hidden="true"></i>Login</button>
+                <button class="btn btn-default" type="submit" ng-click="vm.logOut()"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</button>
+                <button class="btn btn-default" type="submit" ui-sref="register"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Register</button>
             </form>
         </div>
     </div>
@@ -110,9 +110,8 @@
                 <h4>Listing Name:</h4>
                 <a href="#" editable-text="hostListing.listingName">{{ hostListing.listingName || '[empty]' }}</a>
                 <h4>Listing Image:</h4>
-                <button class="btn btn-color btn-xs" ng-click="vm.uploadPhoto()"><i class="fa fa-camera-retro" style="color: #fff;" aria-hidden="true"></i> Update Image</button>
+                <button class="btn btn-color btn-xs" ng-click="vm.updatePhoto()"><i class="fa fa-camera-retro" style="color: #fff;" aria-hidden="true"></i> Update Image</button>
                 <a href="#" editable-text="hostListing.listingImage">{{ hostListing.listingImage || '[empty]' }}</a>
-                <!-- <img ng-src="{{hostListing.listingImage}}" width="40px" height="40px" /> -->
                 <h4>Listing Description:</h4>
                 <a href="#" editable-text="hostListing.listingDescription">{{ hostListing.listingName || '[empty]' }}</a>
                 <h4>Listing Price:</h4>

@@ -1,44 +1,81 @@
-<div class="container">
-    <div class="row">
-        <div class="col-md-5">
+<nav class="navbar navbar-dark bg-primary navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><img src="app/images/lsurfer-logo.png" width="100px" height="50px" /></li>
+                <li style="background-color: #fff;"><a ui-sref="home"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
+                <li style="background-color: #fff;"><a ui-sref="listing"><i class="fa fa-bed" aria-hidden="true"></i> Listings</a></li>
+                <li style="background-color: #fff;"><a ui-sref="messageConvo"><i class="fa fa-envelope-o" aria-hidden="true"></i> Messages</a></li>
+
+            </ul>
+            <form class=" navbar-form navbar-left pull-right ">
+                <button class="btn btn-default " type="submit " ui-sref="login"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</button>
+                <button class="btn btn-default " type="submit " ng-click="vm.logOut()"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</button>
+                <button class="btn btn-default " type="submit " ui-sref="register"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Register</button>
+            </form>
+        </div>
+    </div>
+</nav>
+<div class="container " style="margin-top:80px;">
+    <div class="row form-group">
+        <div class="col-xs-12 col-md-offset-2 col-md-8 col-lg-8 col-lg-offset-2">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <span class="glyphicon glyphicon-comment"></span> Message
+                    <span><i class="fa fa-commenting-o" aria-hidden="true"></i></span> Messages
                     <div class="btn-group pull-right">
                         <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
                             <span class="glyphicon glyphicon-chevron-down"></span>
                         </button>
                         <ul class="dropdown-menu slidedown">
-                            <li><a><span class="glyphicon glyphicon-refresh">
+                            <li><a ui-sref="message"><span class="glyphicon glyphicon-refresh" ng-click="vm.getMessage()">
                             </span> Refresh</a></li>
-                            <li><a><span class="glyphicon glyphicon-off"></span>
-                                Sign Out</a></li>
                         </ul>
                     </div>
+
                 </div>
-                <div class="panel-body" ng-repeat="message in vm.messages">
+                <h3 style="text-align:center;">{{vm.messages[0].subject}}</h3>
+                <div class="panel-body body-panel">
                     <ul class="chat">
-                        <li class="left clearfix"><span class="chat-img pull-left">
-                            <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" />
-                        </span>
-                            <div class="chat-body clearfix">
-                                <div class="header">
-                                    <strong class="primary-font">{{message.firstName}}</strong> <small class="pull-right text-muted">
-                                        <span class="glyphicon glyphicon-time"></span>{{message.messageTime}}</small>
+                        <div class="col-md-2">
+                            <li class="left clearfix" style="list-style-type: none;">
+                                <span class="chat-img pull-left">
+                                  <!-- <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" /> -->
+                                  <!-- DISPLAYS USER'S INITIALS -->
+                                  <div class="row" ng-repeat="initials in vm.nameInitial track by $index">
+                                      <p style="display: table-cell; height: 100px; width: 100px; text-align: center; vertical-align: middle; border-radius: 50px; background: purple; color: white;">{{initials}}</p>
+                                  </div>
+                                </span>
+                            </li>
+                        </div>
+                        <div class="col-md-6">
+                            <li style="list-style-type: none;">
+                                <div class="row">
+                                    <div class="chat-body clearfix" style="height: 100px;" ng-repeat="message in vm.messages | orderBy: 'messageTime'">
+                                        <div class="header">
+                                            <strong class="primary-font">{{message.firstName}} {{message.lastName}}</strong> <small class="pull-right text-muted" style="margin-right: -190px">
+                                        <td>{{message.messageTime | date:'MM/dd/yyyy'}} <i class="fa fa-clock-o" aria-hidden="true"></i>{{message.messageTime | date: 'h:mma'}}</small>
+                                        </div>
+                                        <p>{{message.messageText}}</p>
+                                    </div>
                                 </div>
-                                <p>{{message.messageText}}</p>
-                            </div>
-                        </li>
+                            </li>
+                        </div>
                     </ul>
                 </div>
-                <div class="panel-footer">
-                    <div class="input-group">
-                        <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
-                        <span class="input-group-btn">
-                            <button class="btn btn-warning btn-sm" id="btn-chat">
-                                Send</button>
-                        </span>
-                    </div>
+                <div class="panel-footer clearfix" style="height: 150px;">
+                    <textarea class="form-control" rows="3" ng-model="vm.message.replyText"></textarea>
+                    <span class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-xs-12" style="margin-top: 10px">
+                        <button class="btn btn-warning btn-lg btn-block" id="btn-chat" ng-click="vm.newReply()">Send</button>
+                    </span>
                 </div>
             </div>
         </div>

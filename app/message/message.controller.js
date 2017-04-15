@@ -11,76 +11,87 @@
     function MessageController(MessageFactory, SweetAlert, LocalStorageFactory, UserFactory, $state, $stateParams) {
         var vm = this;
         vm.message = {};
+        vm.r = [];
+        vm.s = [];
+        vm.nameInitial = [];
 
+        var user = LocalStorageFactory.getKey('userId');
+        console.log('logged in as: ', user);
+
+        var convoId = $stateParams.convoId;
+        console.log("StateParams assignment convoId", convoId);
+
+        var subject = $stateParams.subj;
+        console.log("StateParams assignment subject", subject);
 
         vm.getMessage = function() {
-            //  var user = localStorageService.get('localUserId');
-            //console.log('USER in listing', vm.userResponse.userId);
-            //console.log('LOGGED IN AS:', user);
-            //console.log('LOCALSTORAGESERVICE', localStorageService);
-            //console.log('LOCALSTORAGEFACTORY', LocalStorageFactory);
-            //init();
-            //
-            var user = LocalStorageFactory.getKey('userId');
-            console.log('logged in as: ', user);
-            MessageFactory.getMessages(user)
+            MessageFactory.getMessages(convoId)
                 .then(
                     function(response) {
                         vm.messages = response.data;
                         console.log(response.data);
-                        //SweetAlert.swal("You are logged in!", "sucess");
+
+                        //Iterates to each message finding the first and last name of the user, concatenates them as one variable, then splits other characters then returns
+                        //the initials of the first and last name of the user (e.g. 'John Doe turns into - JD')
+                        for (var i = 0; i < vm.messages.length; i++) {
+                            var name = vm.messages[i].firstName + "+" + vm.messages[i].lastName;
+                            var initials = name.match(/\b\w/g) || [];
+                            initials = ((initials.shift() || '') + (initials.pop() || '')).toUpperCase();
+                            console.log('NAME:', initials);
+                            vm.nameInitial.push(initials);
+                            console.log('IN:', vm.initials);
+                        }
+                        //OPTIONAL CODE to seperate the sender and receiver left and right
+                        //DELETE IF NOT NEEDED
+                        // for (var i = 0; i < vm.messages.length; i++) {
+                        //     if (vm.messages[i].userTwoId == LocalStorageFactory.getKey("userId")) {
+                        //         vm.r.push(vm.messages[i]);
+                        //         console.log('R', vm.r);
+                        //     } else {
+                        //         vm.s.push(vm.messages[i]);
+                        //         console.log('S', vm.s);
+                        //     }
+                        // }
                     },
                     function(error) {
                         console.log(error);
                     }
                 );
         }
+        vm.getMessage();
 
-        vm.addConvo = function() {
-            var convo = {
-                userOneId: LocalStorageFactory.getKey('userId'),
-                userTwoId: $stateParams.listingUserId
+
+        vm.newReply = function() {
+
+            var message = {
+                ConversationId: convoId,
+                UserId: user,
+                Subject: subject,
+                MessageText: vm.message.replyText,
+                MessageTime: new Date()
             };
-            console.log(convo);
-            MessageFactory.newConvo(convo)
+
+            console.log(message);
+            MessageFactory.addMessage(message)
                 .then(
                     function(response) {
-                        console.log(convo);
-                        console.log(response.data);
-
-                        var message = {
-                            ConversationId: response.data.conversationId,
-                            UserId: response.data.userOneId,
-                            Subject: vm.message.subject,
-                            MessageText: vm.message.messageText,
-                            MessageTime: new Date()
-                        };
-
-                        console.log(message);
-                        vm.addMessage(message);
-
-                    },
+                        console.log("SUCCESS MESSAGE SENT", response.data);
+                        SweetAlert.swal("OH YEAH!", "Your message has been sent!", "success");
+                        $state.go('message');
+                        vm.message.replyText = "";
+                    })
+                .catch(
                     function(error) {
-                        console.log(error);
-                        console.log(vm.message);
-                    }
-                );
-
+                        console.log("FAILED TO SEND MESSAGE", error);
+                        SweetAlert.swal("FAILED", "Your message was not sent!", "error");
+                    });
         }
 
-        vm.addMessage = function(message) {
-            console.log(message);
-            MessageFactory.newMessage(message)
-                .then(
-                    function(response) {
-                        console.log(response.data);
-                        SweetAlert.swal("Your message has been sent!");
-                        $state.go('message');
-                    },
-                    function(error) {
-                        console.log(error);
-                    }
-                );
+        //logout user
+        vm.logOut = function() {
+            $state.go('home');
+            LocalStorageFactory.clear();
+            SweetAlert.swal("Logged out successfully!", "Please log in again if you want to add a listing", "success");
         }
 
     }

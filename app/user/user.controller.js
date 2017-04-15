@@ -19,7 +19,7 @@
             UserFactory.grabUser(user)
                 .then(
                     function(response) {
-                        vm.user = response.data;
+                        vm.userInfo = response.data;
                         console.log(response.data);
                         // SweetAlert.swal("Welcome back!", vm.user.firstName, "success");
                     }
@@ -156,8 +156,20 @@
 
 
         //Register a new user
-        vm.addUser = function(user) {
-            UserFactory.newUser(user)
+        vm.addUser = function() {
+            var newUser = {
+
+                firstName: vm.user.firstName,
+                lastName: vm.user.lastName,
+                emailAddress: vm.user.emailAddress,
+                zipCode: vm.user.zipCode,
+                contactPhone: vm.user.contactPhone,
+                birthDate: vm.user.birthDate,
+                username: vm.user.username,
+                password: vm.user.password
+
+            }
+            UserFactory.newUser(newUser)
                 .then(
                     function(response) {
                         $state.go('listing');

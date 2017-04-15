@@ -77,14 +77,21 @@
                 controller: 'FavoriteController as vm'
             })
 
-            $stateProvider.state('addMessage', {
-                url: '/addMessage/:listingUserId',
-                templateUrl: 'app/message/message.form.html',
-                controller: 'MessageController as vm'
+            // Messages
+            $stateProvider.state('newConvo', {
+                url: '/newConvo/:listingUserId',
+                templateUrl: 'app/message/message.newconvo.html',
+                controller: 'MessageNewConvoController as vm'
+            })
+
+            $stateProvider.state('messageConvo', {
+                url: '/messageConvo',
+                templateUrl: 'app/message/message.convo.html',
+                controller: 'MessageConvoController as vm'
             })
 
             $stateProvider.state('message', {
-                url: '/message',
+                url: '/message/:convoId?subj',
                 templateUrl: 'app/message/message.html',
                 controller: 'MessageController as vm'
             })

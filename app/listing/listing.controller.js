@@ -17,6 +17,12 @@
             vm.listing = {};
         }
 
+        if (!vm.hostListing) {
+            vm.hostListing = {};
+        }
+
+
+
         //get all availableListings
         vm.getListings = function() {
             ListingFactory.getAllListings()
@@ -100,6 +106,20 @@
                     vm.listing.listingImage = Blob.url + "+" + Blob.filename;
                 })
         }
+
+        //update Photo
+        vm.updatePhoto = function() {
+            filepickerService.pick({
+                    mimetype: 'image/*',
+                    container: 'modal',
+                    services: ['computer', 'facebook']
+                },
+                function onSuccess(Blob) {
+                    console.log(Blob);
+                    vm.hostListing.listingImage = Blob.url + "+" + Blob.filename;
+                })
+        }
+
 
         //update a listing
         vm.updateListing = function(hostListing) {

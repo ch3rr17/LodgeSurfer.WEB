@@ -12,14 +12,14 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li><img src="app/images/lsurfer-logo.png" width="100px" height="50px" /></li>
-                <li style="background-color: #fff;"><a ui-sref="main">Home</a></li>
-                <li style="background-color: #fff;"><a ui-sref="listing">Search Listings</a></li>
-                <li style="background-color: #fff;"><a ui-sref="message">Messages</a></li>
+                <li style="background-color: #fff;"><a ui-sref="home"><i class="fa fa-home" aria-hidden="true"></i>Home</a></li>
+                <li style="background-color: #fff;"><a ui-sref="listing"><i class="fa fa-bed" aria-hidden="true"></i>Search Listings</a></li>
+                <li style="background-color: #fff;"><a ui-sref="messageConvo"><i class="fa fa-envelope" aria-hidden="true"></i>Messages</a></li>
             </ul>
             <form class="navbar-form navbar-left pull-right">
-                <button class="btn btn-default" type="submit" ui-sref="login">Login</button>
-                <button class="btn btn-default" type="submit" ng-click="vm.logOut()">Logout</button>
-                <button class="btn btn-default" type="submit" ui-sref="register">Register</button>
+                <button class="btn btn-default" type="submit" ui-sref="login"><i class="fa fa-sign-in" aria-hidden="true"></i>Login</button>
+                <button class="btn btn-default" type="submit" ng-click="vm.logOut()"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</button>
+                <button class="btn btn-default" type="submit" ui-sref="register"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Register</button>
             </form>
         </div>
     </div>
@@ -40,25 +40,25 @@
                 <div class="profile-usertitle">
                     <div class="profile-usertitle-name">
                         <!-- <p class="userInfo">{{vm.user.firstName}} {{vm.user.lastName}}</p> -->
-                        <a href="#" editable-text="vm.user.firstName">{{vm.user.firstName || '[empty]' }}</a>
-                        <a href="#" editable-text="vm.user.lastName">{{vm.user.lastName || '[empty]' }}</a>
+                        <a href="#" editable-text="vm.userInfo.firstName">{{vm.userInfo.firstName || '[empty]' }}</a>
+                        <a href="#" editable-text="vm.userInfo.lastName">{{vm.userInfo.lastName || '[empty]' }}</a>
                     </div>
 
                     <div>
-                        <a href="#" editable-text="vm.user.zipCode">{{vm.user.zipCode || '[empty]' }}</a>
+                        <a href="#" editable-text="vm.userInfo.zipCode">{{vm.userInfo.zipCode || '[empty]' }}</a>
                     </div>
                     <div>
-                        <a href="#" editable-text="vm.user.contactPhone">{{vm.user.contactPhone || '[empty]' }}</a>
+                        <a href="#" editable-text="vm.userInfo.contactPhone">{{vm.userInfo.contactPhone || '[empty]' }}</a>
                     </div>
                     <div>
-                        <a href="#" editable-date="vm.user.birthDate">{{vm.user.birthDate | date:'M/dd/yy' || '[empty]' }}</a>
+                        <a href="#" editable-date="vm.userInfo.birthDate">{{vm.userInfo.birthDate | date:'M/dd/yy' || '[empty]' }}</a>
                     </div>
                     <div>
-                        <a href="#" editable-text="vm.user.emailAddress">{{vm.user.emailAddress || '[empty]' }}</a>
+                        <a href="#" editable-text="vm.userInfo.emailAddress">{{vm.userInfo.emailAddress || '[empty]' }}</a>
                     </div>
                     <div>
 
-                        <a href="#" editable-text="vm.user.username">{{vm.user.username || '[empty]' }}</a>
+                        <a href="#" editable-text="vm.userInfo.username">{{vm.userInfo.username || '[empty]' }}</a>
                     </div>
                     <!-- <div class="profile-usertitle-job">
                         Developer
