@@ -1,0 +1,214 @@
+body {
+    background-image: url("../images/BACKGROUND-IMAGE.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.home-title {
+    font-family: 'californiamedium', Arial !important;
+    color: #fff !important;
+}
+
+
+/*MAIN PAGES*/
+
+.panel-footer {
+    height: 50px;
+    /*background-color: #111106;*/
+    /*opacity: 0.8;*/
+    color: #fff;
+    border-top: 1px solid #903030;
+}
+
+
+/*LISTING DETAIL PAGE*/
+
+.listing-image {
+    background-repeat: no-repeat;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-color: #f5f5f5;
+    height: 300px;
+    width: 100%;
+}
+
+.detail-container {
+    background-color: #fff;
+    padding: 10px;
+}
+
+
+/*SEARCH LISTING PAGE*/
+
+.availListing {
+    border: 1px solid blue;
+    width: 140px;
+    margin-bottom: 30px;
+}
+
+
+/*ADD LISTING PAGE*/
+
+.listing-container-left-col {
+    border: 1px solid #fff;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.listing-container-right-col {
+    border: 1px solid #fff;
+    background-color: #fff;
+    padding: 10px;
+    margin-left: 60px;
+    border-radius: 4px;
+    width: 500px;
+}
+
+.update-list {
+    font-size: 10pt;
+}
+
+@font-face {
+    font-family: 'californiamedium';
+    src: url('../font/california-webfont.woff2') format('woff2'), url('../font/california-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+h3.listing-title {
+    font-family: 'californiamedium', Arial !important;
+}
+
+.btn-color {
+    background-color: #FF8300;
+    color: #fff;
+}
+
+
+/*PROFILE PAGE*/
+
+.userInfo {
+    font-size: 10pt;
+}
+
+.profile {
+    margin: 20px 0;
+}
+
+
+/* Profile sidebar */
+
+.profile-sidebar {
+    padding: 1px 60px 10px 20px;
+    background: #fff;
+    border: 1px solid #5DADE2;
+    border-radius: 4px;
+    width: 290px;
+}
+
+.profile-userpic img {
+    float: none;
+    margin: 0 auto;
+    width: 50%;
+    height: 50%;
+    -webkit-border-radius: 50% !important;
+    -moz-border-radius: 50% !important;
+    border-radius: 50% !important;
+}
+
+.profile-usertitle {
+    /*text-align: center;*/
+    margin-top: 20px;
+}
+
+.profile-usertitle-name {
+    color: #5a7391;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 7px;
+}
+
+.profile-usertitle-job {
+    text-transform: uppercase;
+    color: #5b9bd1;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.profile-userbuttons {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.profile-userbuttons .btn {
+    text-transform: uppercase;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 6px 15px;
+    margin-right: 5px;
+}
+
+.profile-userbuttons .btn:last-child {
+    margin-right: 0px;
+}
+
+.profile-usermenu {
+    margin-top: 30px;
+}
+
+.profile-usermenu ul li {
+    border-bottom: 1px solid #f0f4f7;
+}
+
+.profile-usermenu ul li:last-child {
+    border-bottom: none;
+}
+
+.profile-usermenu ul li a {
+    color: #93a3b5;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.profile-usermenu ul li a i {
+    margin-right: 8px;
+    font-size: 14px;
+}
+
+.profile-usermenu ul li a:hover {
+    background-color: #fafcfd;
+    color: #5b9bd1;
+}
+
+.profile-usermenu ul li.active {
+    border-bottom: none;
+}
+
+.profile-usermenu ul li.active a {
+    color: #5b9bd1;
+    background-color: #f6f9fb;
+    border-left: 2px solid #5b9bd1;
+    margin-left: -2px;
+}
+
+
+/* Profile Content */
+
+.profile-content {
+    padding: 20px;
+    background: #fff;
+    min-height: 460px;
+}
+
+.favorite {
+    margin-top: 30px;
+    margin-left: 80px;
+}
+
+
+}
